@@ -1,83 +1,41 @@
-const user = {
-   name: 'Dimych',
-   hair: 40,
-   address: { city: 'Minsk', house: 12 },
-   laptop: { title: 'Asus' },
-   technologies: ['css', 'html', 'js', 'react'],
-   companies: [
-      { id: 1, title: 'Epam' },
-      { id: 2, title: 'IT-INCUBATOR' },
-   ]
-}
+const people = [
+   { id: 1, name: 'Evgeniy', age: 22, isOnline: true },
+   { id: 2, name: 'Igor', age: 25, isOnline: true },
+   { id: 3, name: 'Kirill', age: 18, isOnline: false },
+   { id: 4, name: 'Mihail', age: 32, isOnline: false },
+   { id: 5, name: 'Oleg', age: 41, isOnline: false },
+]
 
-const makeHairstyle = (user, number) => {
-   return { ...user, hair: user.hair - number }
+const addPeople = (people) => {
+   const newPeople = { id: 6, name: 'Maria', age: 18, isOnline: true }
+   return [...people, newPeople]
 }
-// console.log(makeHairstyle(user, 10))
+// console.log(addPeople(people))
 
-const moveUser = (user, newCity) => {
-   return { ...user, address: { ...user.address, city: newCity } }
+const removePeople = () => {
+   return people.filter(p => p.id !== 3)
 }
-// console.log(moveUser(user, 'Kiev'))
+// console.log(removePeople(people))
 
-const moveUserToOtherHouse = (user, newHouse) => {
-   return { ...user, address: { ...user.address, house: newHouse } }
+const changeIsOnline = (people) => {
+   return people.map(p => p.id === 4
+      ? { ...p, isOnline: true }
+      : p
+   )
 }
-// console.log(moveUserToOtherHouse(user, 99))
+// console.log(changeIsOnline(people))
 
-const upgradeUserLaptop = (user, newLaptop) => {
-   return { ...user, laptop: { ...user.laptop, title: newLaptop } }
+const addToAge = (people) => {
+   return people.map(p => p.id === 1
+      ? { ...p, age: p.age + 1 }
+      : p
+   )
 }
-// console.log(upgradeUserLaptop(user, 'Macbook'))
+// console.log(addedToAge(people))
 
-const addNewTechnologyToUser = (user, newTechnology) => {
-   return { ...user, technologies: [...user.technologies, newTechnology] }
+const addAllSurName = (people) => {
+   return people.map(p => {
+      return { ...p, surname: 'Ivanov' }
+   })
 }
-// console.log(addNewTechnologyToUser(user, 'ts'))
-
-const updateTechnology = (user, oldTechnology, newTechnology) => {
-   return { ...user, technologies: user.technologies.map(t => t === oldTechnology ? newTechnology : t) }
-}
-// console.log(updateTechnology(user, 'js', 'ts'))
-
-const removeTechnology = (user, TechnologyForDelete) => {
-   return { ...user, technologies: user.technologies.filter(t => t !== TechnologyForDelete) }
-}
-// console.log(removeTechnology(user, 'js'))
-
-const addNewCompany = (user, newCompany) => {
-   return { ...user, companies: [...user.companies, newCompany] }
-}
-// console.log(addNewCompany(user, { id: 3, title: 'GOOGLE' })) 
-
-const updateCompanyTitle = (user, idCompany, newTitle) => {
-   return {
-      ...user, companies: user.companies.map(c => c.id === idCompany
-         ? { ...c, title: newTitle }
-         : c
-      )
-   }
-}
-// console.log(updateCompanyTitle(user, 1, 'EPAM'))
-
-// AssociativeArray:
-const companies = {
-   '1': [
-      { id: 1, title: 'Епам' },
-      { id: 2, title: 'Google' },
-   ],
-   '2': [
-      { id: 1, title: 'IT-INCUBATOR' },
-      { id: 2, title: 'Yandex' },
-   ],
-}
-
-const changeCompanyTitle = (idCompany, idCompanyTitle, companies, newTitle,) => {
-   return {
-      ...companies, [idCompany]: companies[idCompany].map(c => c.id === idCompanyTitle
-         ? { ...c, title: newTitle }
-         : c
-      )
-   }
-}
-// console.log(changeCompanyTitle('1', 1, companies, 'Epam'))
+// console.log(addAllSurName(people))
