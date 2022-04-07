@@ -19,3 +19,8 @@ const addToNumber = (friends) => {
    return friends.map(f => f === 31 ? 31 + 1 : f)
 }
 // console.log(addToNumber(friends))
+
+const sortedFriends = (friends) => {
+   return [...friends].sort((a, b) => a > b ? 1 : -1)
+}
+// console.log(sortedFriends(friends))

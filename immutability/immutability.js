@@ -39,3 +39,13 @@ const addAllSurName = (people) => {
    })
 }
 // console.log(addAllSurName(people))
+
+const sortedName = (people) => {
+   return [...people].sort((a, b) => a.name < b.name ? 1 : -1) // Сортировка по алфафиту ( В обратном порядке!! )
+}
+// console.log(sortedName(people))
+
+const sortedAge = (people) => {
+   return [...people].sort((a, b) => a.age - b.age) // Сортировка от наименьшего возраста, к большему
+}
+// console.log(sortedAge(people))

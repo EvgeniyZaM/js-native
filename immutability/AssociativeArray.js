@@ -59,3 +59,13 @@ const addAllToIsActive = (tasks) => {
    }
 }
 // console.log(addAllToIsActive(tasks))
+
+const sortedTitle = (tasks) => {
+   return { ...tasks, [todolistId1]: [...tasks[[todolistId1]]].sort((a, b) => a.title < b.title ? 1 : -1) } // Сортировка по алфафиту ( В обратном порядке!! )
+}
+// console.log(sortedTitle(tasks))
+
+const sortedId = (tasks) => {
+   return { ...tasks, [todolistId1]: [...tasks[todolistId1]].sort((a, b) => b.id - a.id) } // Сортировка от большего id, к меньшему
+}
+// console.log(sortedId(tasks))
