@@ -13,7 +13,7 @@ console.log(people.reduce((acc, el) => {
 
 // Найтти самое большое число
 console.log(people.reduce((acc, el) => {
-   return el.age > acc ? el.age : acc
+   return el.age > acc.age ? acc : el.age
 }, 0))
 
 // Создать новый объект - {Evgeniy: 22, Igor: 25, Kirill: 18, Mihail: 32, Oleg: 41}
