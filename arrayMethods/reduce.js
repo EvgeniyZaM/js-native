@@ -35,3 +35,4 @@ console.log(people.reduce((acc, el) => {
    acc = `${acc} ${el.name}`
    return acc
 }, ''))
+
