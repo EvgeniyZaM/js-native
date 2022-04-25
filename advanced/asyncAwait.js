@@ -1,13 +1,17 @@
-const fetchRequest = async () => {
+const asyncAwait = async () => {
    try {
-      const res = await fetch('https://jsonplaceholder.typicode.com/users') // fetch делает запрос и возвращает promise
-      const data = await res.json() // json() - это метод, который нужен для того, чтобы мы получили json, который прилетает к нам с сервера. Он так же возвращает promise
-      console.log(data)
+      const res = await fetch('https://jsonplaceholder.typicode.com/users')
+      const data = await res.json()
+      const user = await data[0]
+      const address = await user.address
+      const geo = await address.geo
+      const lat = await geo.lat
+      console.log(lat)
    } catch (err) {
-      console.log('Error:', err.message)
+      console.warn(err)
    } finally {
       console.log('Finally')
    }
 }
 
-fetchRequest()
+asyncAwait()
