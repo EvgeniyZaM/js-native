@@ -15,8 +15,7 @@ const tasks = {
 
 const addTodolist = (tasks) => {
    const todolistId3 = 3
-   const newTasks = { id: 1, title: 'how to lose weight in 1 day', isDone: false }
-   return { ...tasks, [todolistId3]: [newTasks] }
+   return { ...tasks, [todolistId3]: [] }
 }
 // console.log(addTodolist(tasks))
 

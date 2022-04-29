@@ -6,14 +6,18 @@ const people = [
    { id: 5, name: 'Oleg', age: 41, isOnline: false },
 ]
 
-// splice - изменяет содержимое массива, удаляя существующие элементы и/или добавляя новые
+// Отсчитать первые 5 элементов, удалить 0 последующих элементов и добавить новый объект
+// const removed = people.splice(5, 0, { id: 6, name: 'Maria', age: 18, isOnline: true })
+// console.log(removed) // Пустой массив, т.к. ничего не удалено
 
-// Отсчитать первые 2 элемента и оставить 3 последующих
-// const newPeople = people.splice(2, 3)
-// console.log(newPeople) // 3 el
-// console.log(people) // 2 el
+// Отсчитать первый 1 элемент, удалить 1 последующий элемент и вместо него добавить новый объект
+// const removed = people.splice(1, 1, { id: 2, name: 'Maria', age: 18, isOnline: true },)
+// console.log(removed) // // 1 удаленный элемент
 
-// Отсчитать первые 0 элементов, оставить 1 последующий и заменить его на { id: 0, name: 'Incognito', age: 0, isOnline: true }
-// const newPeople = people.splice(0, 1, { id: 0, name: 'Incognito', age: 0, isOnline: true })
-// console.log(newPeople) // {id: 1, name: 'Evgeniy', age: 22, isOnline: true}
-// console.log(people[0]) // {id: 0, name: 'Incognito', age: 0, isOnline: true}
+// Отсчитать первые 4 элементов, удалить 1 последующий элемен
+// const removed = people.splice(4, 1)
+// console.log(removed) // 1 удаленный элемент
+
+// Удалить все элементы после индекста 1
+// const removed = people.splice(1)
+// console.log(removed) // 4 удаленных элемента

@@ -6,10 +6,8 @@ const people = [
    { id: 5, name: 'Oleg', age: 41, isOnline: false },
 ]
 
-// Отсортировать по именам
-const sortedName = [...people].sort((a, b) => a.name > b.name ? 1 : -1)
-// console.log(sortedName)
+const obj1 = { id: 5, name: 'Maria', age: 18, isOnline: true }
+const obj2 = { id: 6, name: 'Diana', age: 18, isOnline: true }
 
-// Отсортировать по возрасту
-const sortedAge = [...people].sort((a, b) => a.age - b.age)
-// console.log(sortedAge)
+const newArr = people.concat(obj1, obj2)
+// console.log(newArr)

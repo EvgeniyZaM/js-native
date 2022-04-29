@@ -6,10 +6,7 @@ const people = [
    { id: 5, name: 'Oleg', age: 41, isOnline: false },
 ]
 
-// Отсортировать по именам
-const sortedName = [...people].sort((a, b) => a.name > b.name ? 1 : -1)
-// console.log(sortedName)
-
-// Отсортировать по возрасту
-const sortedAge = [...people].sort((a, b) => a.age - b.age)
-// console.log(sortedAge)
+// Проитерироваться по именам
+people.forEach((item, index, arr) => {
+   console.log(item.name)
+})
