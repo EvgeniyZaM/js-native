@@ -8,5 +8,7 @@ const people = [
 
 // Проитерироваться по именам
 people.forEach((item, index, arr) => {
-   console.log(item.name)
+   console.log(item)
+   console.log(index)
+   console.log(arr)
 })

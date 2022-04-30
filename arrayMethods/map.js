@@ -19,7 +19,7 @@ const addSurName = people.map((p) => p.id === 1
    : p)
 // console.log(addSurName)
 
-// Прибавить +1 к возрасту конкретному элементу и преобрназовать строку в число
+// Прибавить +1 к возрасту конкретному элементу и преобразовать строку в число
 const addToAge = people.map(p => p.id === 1
    ? { ...p, age: + p.age + 1 }
    : p
