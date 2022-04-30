@@ -13,3 +13,7 @@ const sortedName = [...people].sort((a, b) => a.name > b.name ? 1 : -1)
 // Отсортировать по возрасту
 const sortedAge = [...people].sort((a, b) => a.age - b.age)
 // console.log(sortedAge)
+
+// Отсортировать имена, от самого короткого
+const sortedString = [...people].sort((a, b) => a.name.length - b.name.length)
+// console.log(sortedString)
