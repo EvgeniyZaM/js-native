@@ -3,8 +3,8 @@
 // // КОД:
 
 // // 1. Функция sum принимает параметром целые положительные числа (неопределенное кол-во) и возвращает их сумму (rest)
-// export function sum(...nums: Array<any>): number {
-//    return nums.reduce((acc, el) => {
+// export function sum(...numbers: Array<any>): number {
+//    return numbers.reduce((acc, el) => {
 //       return acc + el
 //    }, 0)
 // }
