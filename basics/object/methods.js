@@ -1,6 +1,6 @@
 const person = {
-   name: 'Evgeniy', age: 22,
-   wife: { name: 'Maria', age: 18 }
+  name: 'Evgeniy', age: 22,
+  wife: { name: 'Maria', age: 18 }
 }
 
 // console.log(Object.is(person, { name: 'Mihail' })) // false 
