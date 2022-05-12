@@ -1,5 +1,5 @@
 const people = [
-   { id: 1, name: 'Evgeniy', age: '22', isOnline: true },
+   { id: 1, name: 'Evgeniy', age: 22, isOnline: true },
    { id: 2, name: 'Igor', age: 25, isOnline: true },
    { id: 3, name: 'Kirill', age: 18, isOnline: false },
    { id: 4, name: 'Mihail', age: 32, isOnline: false },
