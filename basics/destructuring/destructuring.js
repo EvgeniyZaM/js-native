@@ -28,8 +28,8 @@ const { name, isOnline } = person.friends[0]
 // console.log(isOnline) // false
 
 // destructuring Function:
-const exampleDestructuring = ({ myName, age, isActive }) => {
-   // console.log(myName, age) // Olga 32
+const exampleDestructuring = ({ myName, age, isActive = false }) => {
+   // console.log(myName, age, isActive) // Olga 32 false
 }
 exampleDestructuring(person)
 
