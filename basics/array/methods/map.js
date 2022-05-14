@@ -6,7 +6,7 @@ const people = [
    { id: 5, name: 'Oleg', age: 41, isOnline: false },
 ]
 
-// Изменить свойство isOnline на true конкретному элменту
+// Изменить свойство isOnline на true конкретному элементу
 const changeIsOnline = people.map(p => p.id === 4
    ? { ...p, isOnline: true }
    : p

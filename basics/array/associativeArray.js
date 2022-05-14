@@ -1,5 +1,5 @@
-const todoListId1 = 1
-const todoListId2 = 2
+const todoListId1 = '16rt-54ty'
+const todoListId2 = '26tn-45bk'
 
 const tasks = {
    [todoListId1]: [
