@@ -47,13 +47,12 @@ function factorial(5-передал сюда пятерку){
 
 // Счетчик:
 let count = 0
-function counter() {
-   count++
-   console.log(count)
-   if (count === 20) {
+const counter = () => {
+   console.log(count++)
+   if (count === 30) {
       return count
    } else {
       counter()
    }
 }
-counter()
+// counter()

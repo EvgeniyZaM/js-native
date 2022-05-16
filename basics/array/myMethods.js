@@ -12,7 +12,6 @@ const myMap = (students, callback) => {
 	}
 	return convertedArray
 }
-
 // console.log(myMap(students, (s) => s.name))
 // console.log(myMap(students, (s) => ({ ...s, isStudent: true })))
 
@@ -20,12 +19,11 @@ const myFilter = (students, callback) => {
 	const filteredArray = []
 	for (let i = 0; i < students.length; i++) {
 		if (callback(students[i]) === true) {
-			filteredArray[i] = students[i]
+			filteredArray.push(students[i])
 		}
 	}
 	return filteredArray
 }
-
 // console.log(myFilter(students, (s) => s.age >= 21))
 
 const myFind = (students, callback) => {
@@ -35,5 +33,14 @@ const myFind = (students, callback) => {
 		}
 	}
 }
-
 // console.log(myFind(students, (s) => s.age > 21))
+
+// bubble sort
+for (let j = 0; j < students.length - 1; j++) {
+	for (let i = 0; i < students.length - 1 - j; i++) {
+		if (students[i].age > students[i + 1].age) {
+			[students[i], students[i + 1]] = [students[i + 1], students[i]]
+		}
+	}
+}
+// console.log(students)
