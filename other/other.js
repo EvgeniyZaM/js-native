@@ -4,6 +4,14 @@ const converter = (word) => {
 }
 // console.log(converter("How can mirrors")) // How Can Mirrors
 
+// Вернуть слово с заглавной буквы
+const capitalizeFirstLetter = (word) => {
+	word = word.split('')
+	word[0] = word[0].toUpperCase()
+	return word.join('')
+}
+// console.log(capitalizeFirstLetter('hello')) // Hello
+
 // Вернуть время в миллисекундах
 const past = (h, m, s) => {
 	return ((h * 3600) + (m * 60) + s) * 1000
