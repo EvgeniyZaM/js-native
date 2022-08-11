@@ -7,6 +7,7 @@ const search = (arr, target) => {
 			return i
 		}
 	}
+
 	return -1
 }
 

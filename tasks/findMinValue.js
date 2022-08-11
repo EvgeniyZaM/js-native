@@ -4,7 +4,7 @@ const findMinValue = (numbers) => {
 	let minValue = numbers[0]
 
 	for (let i = 0; i < numbers.length; i++) {
-		if (minValue > numbers[i]) {
+		if (numbers[i] < minValue) {
 			minValue = numbers[i]
 		}
 	}

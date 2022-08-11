@@ -22,8 +22,6 @@ const flatten = (arr) => {
 // console.log(flatten([[1], [[2, 3]], [[[4]]]])) // [1, 2, 3, 4]
 
 // 2
-const flatten2 = (arr) => {
-	return arr.flat(Infinity)
-}
+const flatten2 = arr => arr.flat(Infinity)
 
 // console.log(flatten2([[1], [[2, 3]], [[[4]]]])) // [1, 2, 3, 4]

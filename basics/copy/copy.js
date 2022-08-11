@@ -38,15 +38,11 @@ let man = {
 // Spread ( deep copy )
 const copyMan = {
    ...man, mother: {
-      ...man.mother, work: { ...man.mother.work }, parents: man.mother.parents.map((p) => {
-         return {
-            ...p, favoriteDish: {
-               ...p.favoriteDish, ingredients: p.favoriteDish.ingredients.map((i) => {
-                  return { ...i }
-               })
-            }
+      ...man.mother, work: { ...man.mother.work }, parents: man.mother.parents.map(p => ({
+         ...p, favoriteDish: {
+            ...p.favoriteDish, ingredients: p.favoriteDish.ingredients.map(f => ({ ...f }))
          }
-      })
+      }))
    }
 }
 

@@ -1,3 +1,5 @@
+// Повернута ли строка?
+
 const isStringRotated = (source, test) => {
 	if (source.length !== test.length) {
 		return false
