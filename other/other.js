@@ -1,20 +1,20 @@
 // Каждое новое слово должно начинаться с большой буквы
 const converter = (word) => {
-	return word.split(' ').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ')
+  return word.split(" ").map((w) => w[0].toUpperCase() + w.slice(1)).join(" ")
 }
 // console.log(converter("How can mirrors")) // How Can Mirrors
 
 // Вернуть слово с заглавной буквы
 const capitalizeFirstLetter = (word) => {
-	word = word.split('')
-	word[0] = word[0].toUpperCase()
-	return word.join('')
+  word = word.split("")
+  word[0] = word[0].toUpperCase()
+  return word.join("")
 }
 // console.log(capitalizeFirstLetter('hello')) // Hello
 
 // Вернуть время в миллисекундах
 const past = (h, m, s) => {
-	return ((h * 3600) + (m * 60) + s) * 1000
+  return ((h * 3600) + (m * 60) + s) * 1000
 }
 // console.log(past(1, 1, 1)) // 3661000
 
@@ -23,5 +23,5 @@ const invert = (array) => array.map(num => -num)
 // console.log(invert([0, 1, 2, -3, -4])) // [-0, -1, -2, 3, 4]
 
 // Удалить все восклицательный знаки
-const removeExclamationMarks = (s) => s.replace(/!/g, '')
+const removeExclamationMarks = (s) => s.replace(/!/g, "")
 // console.log(removeExclamationMarks("Hello World!")) // Hello World
