@@ -1,3 +1,4 @@
+// Преобразование в string с помощью глобальной функции String()
 // console.log(String("")) // ""
 // console.log(String("  ")) // "  "
 // console.log(String("  a  ")) // "  a  "
@@ -10,11 +11,12 @@
 // console.log(String(false)) // "false"
 // console.log(String(null)) // "null"
 // console.log(String(undefined)) // "undefined"
-// console.log(String(1n)) // "1"
 // console.log(String(NaN)) // "NaN"
 // console.log(String(Infinity)) // "Infinity"
 // console.log(String(-Infinity)) // "-Infinity"
 
+// Преобразование в number с помощью глобальной функции Number()
+// Можно преобразовать с помощью унарного оператора +
 // console.log(Number("")) // 0
 // console.log(Number("  ")) // 0 // Пробелы удаляются и остается ""
 // console.log(Number("  a  ")) // NaN // Пробелы удаляются и остается "a"
@@ -27,11 +29,12 @@
 // console.log(Number(false)) // 0
 // console.log(Number(null)) // 0
 // console.log(Number(undefined)) // NaN
-// console.log(Number(1n)) // 1
 // console.log(Number(NaN)) // NaN
 // console.log(Number(Infinity)) // Infinity
 // console.log(Number(-Infinity)) // -Infinity
 
+// Преобразование в boolean с помощью глобальной функции Boolean()
+// Можно преобразовать с помощью двойного НЕ
 // console.log(Boolean("")) // false
 // console.log(Boolean("  ")) // true
 // console.log(Boolean("  a  ")) // true
@@ -44,7 +47,6 @@
 // console.log(Boolean(false)) // false
 // console.log(Boolean(null)) // false
 // console.log(Boolean(undefined)) // false
-// console.log(Boolean(1n)) // true
 // console.log(Boolean(NaN)) // false
 // console.log(Boolean(Infinity)) // true
 // console.log(Boolean(-Infinity)) // true
