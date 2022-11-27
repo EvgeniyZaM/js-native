@@ -1,5 +1,5 @@
 // Function Declaration
-// console.log(functionDeclaration(1)) // 6
+// console.log(functionDeclaration(1)) // 15
 function functionDeclaration(a = 10, b = 5) { // Параметры по умолчанию
   return a + b // Все что после return - выполняться не будет!
   console.log("???")
@@ -18,7 +18,6 @@ const arrowFunction = (a = 10, b = 5) => {
   return a + b // Все что после return - выполняться не будет!
   console.log("???")
 }
-
 const arrowFunction2 = a => a + 5
 
 console.log(arrowFunction(10)) // 15

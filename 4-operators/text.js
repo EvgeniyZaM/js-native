@@ -16,3 +16,10 @@ console.log(typeof null) // object (официально признанная о
 console.log(typeof Math) // object
 console.log(typeof function () {
 }) // function
+
+
+// 2. delete (удаляет свойство в объекте)
+const obj = {a: 1}
+console.log(obj) // {a: 1}
+delete obj.a
+console.log(obj) // {}
