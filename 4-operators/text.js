@@ -17,9 +17,15 @@ console.log(typeof Math) // object
 console.log(typeof function () {
 }) // function
 
-
 // 2. delete (удаляет свойство в объекте)
 const obj = {a: 1}
 console.log(obj) // {a: 1}
 delete obj.a
 console.log(obj) // {}
+
+// 3. in (проверяет, существовует ли свойство у объекта)
+const obj2 = {name: "Evgeniy", age: 23}
+console.log("name" in obj2) // true
+console.log("info" in obj2) // false
+const key = "age"
+console.log(key in obj2) // true (если мы опускаем кавычки, это значит, что мы указываем переменную, в которой находится имя свойства)

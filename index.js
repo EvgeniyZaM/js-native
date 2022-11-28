@@ -1,57 +1,39 @@
-// const getStatus = "isOnline"
-// const myName = "Evgeniy"
-//
-// const person = {
-//   myName,
-//   [getStatus]: true,
-//   "likes JS": true,
-//   var: "good",
-//   let: "good2",
-//   const: "good3",
-//   0: "good4", //
-//   1: "good5", //
-//   address: {
-//     city: "Gomel",
-//     street: "Lenina",
-//   },
-//   friends: ["Miha", "Kolyan", "Dima"],
-//   showInfo(value) {
-//     console.log(`${person.myName} ${value}`)
-//   },
-// }
-//
-// // Чтение объекта:
-// console.log(person)
-// console.log(person.address)
-// console.log(person.address.city)
-// console.log(person["likes JS"])
-// console.log(person[0])
-// console.log(person[1])
-// person.showInfo("человек")
-//
-// // Добавление свойства:
-// person.name = "Dimon"
-// person["i love frontend"] = true
-// person.matherInfo = {name: "Olga", age: 55}
-// person.hobby = ["Programming", "sleep"]
-//
-// // Изменение свойства:
-// person.name = "Dmitriy"
-// person["i love frontend"] = false
-// person.matherInfo = {name: "Maria", age: 66}
-// person.hobby = ["GTA5", "WoT"]
-//
-// // Удаление свойства:
-// delete person.name
-// delete person["i love frontend"]
-// delete person.matherInfo
-// delete person.hobby
-//
-// // Для перебора свойств объекта используется цикл for in
-// // for (let key in person) {
-// //   console.log(key) // Ключи объекта
-// //   console.log(person[key]) // Значения объекта
-// // }
-//
+// ?. (Опциональная цепочка)
+// Если значение перед ?. равно undefined или null, ?. остановит вычисление и вернет undefined
+// Синтаксис:
+// obj?.prop – возвращает obj.prop если obj существует, в противном случае undefined
+// obj?.[prop] – возвращает obj[prop] если obj существует, в противном случае undefined
+// obj.method?.() – вызывает obj.method(), если obj.method существует, в противном случае возвращает undefined
 
+let key = "is likes"
+const user = null
 
+const user2 = {
+  sayHi() {
+    console.log("Hi")
+  }
+}
+
+// console.log(user) // null
+// console.log(user.address) // Error
+// console.log(user.address.city) // Error
+// console.log(user.address.city.name) // Error
+
+// console.log(user?.address) // undefined
+// console.log(user?.address?.city) // undefined
+// console.log(user?.address?.city?.name) // undefined
+
+// delete user.address.city // Error
+// delete user?.address // Ошибки нету
+
+// console.log(user[key]) // Error
+// console.log(user?.[key]) // undefined
+
+// user.sayHi() // Error
+// user?.sayHi?.() // ничего не произошло
+// user2.sayHi?.() // Hi
+
+// console.log(user3?.address) // Error (объекта user3 не существует)
+
+// user2.name = "John" // Работает
+// user2?.name = "John" // Error
