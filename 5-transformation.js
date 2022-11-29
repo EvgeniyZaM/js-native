@@ -1,4 +1,5 @@
 // Преобразование в string с помощью глобальной функции String()
+// Можно преобразовать с помощью метода toString() (не преобразовывает null и undefined)
 // console.log(String("")) // ""
 // console.log(String("  ")) // "  "
 // console.log(String("  a  ")) // "  a  "
@@ -50,3 +51,10 @@
 // console.log(Boolean(NaN)) // false
 // console.log(Boolean(Infinity)) // true
 // console.log(Boolean(-Infinity)) // true
+// console.log(Boolean({})) // true
+// console.log(Boolean([])) // true
+// console.log(Boolean(() => {
+// })) // true
+// console.log(Boolean(function () {
+// })) // true
+// console.log(Boolean(new Number(0))) // true

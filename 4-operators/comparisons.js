@@ -1,8 +1,9 @@
 // Все операторы сравнения возвращают boolean значение
 // Каждый тип данных, не являющийся числом - преобразуется в число, (с операторами  === и !== преобразование не происходит)
 // Специальное правило языка - при нестрогом null и undefined равны друг другу и не равны никаким другим значениям
-// Любое сравнение с NaN возвращает false
+// Любое сравнение с NaN возвращает false, даже NaN === NaN
 // Любое сравнение с undefined возвращает false, кроме null == undefined
+// 0 и -0 всегда равны друг другу, как в строгом, так и не строгом равенстве
 
 // > (больше)
 // console.log("" > -1) // true
@@ -21,12 +22,14 @@
 // console.log(false <= 0) // true
 // console.log(null <= 1) // true
 // console.log(undefined <= 0) // false
+// console.log(0 <= -0) // true
 
 // <= (больше или равно)
 // console.log(NaN >= -1) // false
 // console.log(Infinity >= -1) // true
 // console.log(-Infinity >= -1) // false
 // console.log(null >= 0) // true
+// console.log(0 >= -0) // true
 
 // == (неравенство)
 // console.log("" == 0) // true
@@ -46,6 +49,7 @@
 // // !!!
 // console.log(null == 0) // false
 // console.log(undefined == null) // true
+// console.log(0 == -0) // true
 
 // === (строгое равенство)
 // console.log("" === 0) // false
@@ -64,6 +68,8 @@
 // console.log(-Infinity === 0) // false
 // console.log(null === 0) // false
 // console.log(undefined === null) // false
+// console.log(NaN === NaN) // false
+// console.log(0 === -0) // true
 
 // Сравнение строк (строки сравниваются посимвольно)
 // Используется кодировка Unicode, а не настоящий алфавит

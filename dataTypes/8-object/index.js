@@ -44,7 +44,10 @@ let person = {
   ],
   showInfo(value) {
     console.log(`${this.name} ${value}`)
-  }
+  },
+  sayBob: function () {
+    console.log("Bob!")
+  },
 }
 
 // Чтение свойств:
@@ -60,6 +63,10 @@ let person = {
 // console.log(person[13])
 // console.log(person["13"])
 // console.log(person.address)
+// console.log(person.address.city)
+// console.log(person.address.street)
+// console.log(person[friends])
+// console.log(person["my friends"][0])
 // console.log(person["my friends"][0].id)
 // console.log(person["my friends"][0].name)
 // console.log(person["my friends"][0].favoriteDish.title)
@@ -72,6 +79,7 @@ let person = {
 // console.log(person["my friends"][0].favoriteDish.ingredients[2].id)
 // console.log(person["my friends"][0].favoriteDish.ingredients[2].title)
 // console.log(person["my friends"][0].favoriteDish.ingredients[2].amount)
+// console.log(person[friends][1])
 // console.log(person[friends][1].id)
 // console.log(person[friends][1].name)
 // console.log(person[friends][1].favoriteDish.title)
@@ -82,6 +90,7 @@ let person = {
 // console.log(person[friends][1].favoriteDish.ingredients[1].title)
 // console.log(person[friends][1].favoriteDish.ingredients[1].amount)
 // person.showInfo("человек")
+// person.sayBob()
 
 // Добавление свойств (изменение работает аналогичным образом):
 person.age = 23
@@ -180,3 +189,43 @@ delete person.sayHi
 //   })
 // }
 
+
+// ?. (Опциональная цепочка)
+// Если значение перед ?. равно undefined или null, ?. остановит вычисление и вернет undefined
+// Синтаксис:
+// obj?.prop – возвращает obj.prop если obj существует, в противном случае undefined
+// obj?.[prop] – возвращает obj[prop] если obj существует, в противном случае undefined
+// obj.method?.() – вызывает obj.method(), если obj.method существует, в противном случае возвращает undefined
+
+let key = "is likes"
+const user = null
+
+const user2 = {
+  sayHi() {
+    console.log("Hi")
+  }
+}
+
+// console.log(user) // null
+// console.log(user.address) // Error
+// console.log(user.address.city) // Error
+// console.log(user.address.city.name) // Error
+
+// console.log(user?.address) // undefined
+// console.log(user?.address?.city) // undefined
+// console.log(user?.address?.city?.name) // undefined
+
+// delete user.address.city // Error
+// delete user?.address // Ошибки нету
+
+// console.log(user[key]) // Error
+// console.log(user?.[key]) // undefined
+
+// user.sayHi() // Error
+// user?.sayHi?.() // ничего не произошло
+// user2.sayHi?.() // Hi
+
+// console.log(user3?.address) // Error (объекта user3 не существует)
+
+// user2.name = "John" // Работает
+// user2?.name = "John" // Error
