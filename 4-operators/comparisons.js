@@ -1,5 +1,6 @@
 // Все операторы сравнения возвращают boolean значение
-// Каждый тип данных, не являющийся числом - преобразуется в число, (с операторами  === и !== преобразование не происходит)
+// Каждый тип данных, не являющийся числом - преобразуется в число, (с операторами  === и !== преобразование не происходит, также при сравнении строки  со строкой не происходит)
+// При сравнениях с [], происходит преобразование в строку, с помощью метода toString()
 // Специальное правило языка - при нестрогом null и undefined равны друг другу и не равны никаким другим значениям
 // Любое сравнение с NaN возвращает false, даже NaN === NaN
 // Любое сравнение с undefined возвращает false, кроме null == undefined
@@ -50,6 +51,7 @@
 // console.log(null == 0) // false
 // console.log(undefined == null) // true
 // console.log(0 == -0) // true
+// console.log('0' == '') // false
 
 // === (строгое равенство)
 // console.log("" === 0) // false
@@ -86,3 +88,16 @@
 // console.log("ааая" > "аааааааааа") // true
 // console.log("ааа" > "ааа") // false
 // console.log("аааа" > "ааа") // true
+
+// Ссылочный тип данных:
+// console.log([] == 0) // true
+// console.log([] == "0") // false
+// console.log([] == "") // true
+// console.log([1] == "1") // true
+// console.log([1, 2, 3] == "1,2,3") // true
+// console.log([undefined] == "") // true
+// console.log([null] == "") // true
+// console.log([null, undefined] == ",") // true
+// console.log([1, null, undefined] == "1,,") // true
+// console.log([null, undefined, 1] == ",,1") // true
+// console.log([1, "1", true, NaN, Infinity, -Infinity, undefined, null] == "1,1,true,NaN,Infinity,-Infinity,,") // true

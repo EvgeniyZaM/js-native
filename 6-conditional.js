@@ -17,7 +17,7 @@ const f = () => {
     return
   }
 
-  console.log("Вы ничего не ввели")
+  console.log("Другое число")
 }
 
 f()
@@ -30,7 +30,7 @@ if (number === 0) {
 } else if (number === 2 || number === 3) {
   console.log("Вы ввели число 2, а может и 3")
 } else {
-  console.log("Вы ничего не ввели")
+  console.log("Другое число")
 }
 
 // 3 вариант:
@@ -40,7 +40,7 @@ number === 0
     ? console.log("Вы ввели число 1")
     : number === 2 || number === 3
       ? console.log("Вы ввели число 2, а может и 3")
-      : console.log("Вы ничего не ввели")
+      : console.log("Другое число")
 
 // 4 вариант:
 switch (number) {
@@ -58,6 +58,30 @@ switch (number) {
     break
 
   default: {
-    console.log("Вы ничего не ввели")
+    console.log("Другое число")
   }
 }
+
+// 5 вариант:
+const f2 = () => {
+  switch (number) {
+    case 0:
+      console.log("Вы ввели число 0")
+      return
+
+    case 1:
+      console.log("Вы ввели число 1")
+      return
+
+    case 2:
+    case 3:
+      console.log("Вы ввели число 2, а может и 3")
+      return
+
+    default: {
+      console.log("Другое число")
+    }
+  }
+}
+
+f2()
