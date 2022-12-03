@@ -1,2 +1,2 @@
 // null (пусто)
-const nl = null
+console.log(null)

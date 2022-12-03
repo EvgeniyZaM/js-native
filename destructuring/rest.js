@@ -1,11 +1,12 @@
-// let [name1, name2, ...rest] = ["Julius", "Caesar", "Consul", "of the Roman Republic"]
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+const obj = {a: 1, b: 2, c: 3}
 
-let options2 = {
-  title: "Menu",
-  height: 200,
-  width: 100
+const [item1, item2, ...rest] = numbers
+const {el, ...rest2} = obj
+// console.log(rest) // [3, 4, 5, 6, 7, 8, 9, 10]
+// console.log(rest2) // { a: 1, b: 2, c: 3 }
+
+const calcSum = (a, b, c, ...rest) => {
+  // console.log(rest) // [ 4, 5, 6, 7, 8, 9 ]
 }
-
-let {title, ...rest} = options2
-
-console.log(rest)
+calcSum(1, 2, 3, 4, 5, 6, 7, 8, 9)

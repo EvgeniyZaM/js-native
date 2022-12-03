@@ -1,21 +1,29 @@
 // Текстовые операторы:
 
 // 1. typeof (проверяет тип данных и возвращает строку с именем типа данных)
+const f = () => {
+}
+const f2 = function () {
+}
+console.log(typeof "") // "string"
+console.log(typeof 0) // "number"
+console.log(typeof true) // "boolean"
+console.log(typeof false) // "boolean"
+console.log(typeof false) // "boolean"
+console.log(typeof null) // "object" (официально признанная ошибка в typeof)
 console.log(typeof undefined) // undefined
-console.log(typeof 1) // number
-console.log(typeof 1.1) // number
+console.log(typeof 1n) // bigint
+console.log(typeof Symbol("id")) // symbol
+console.log(typeof NaN) // number
 console.log(typeof Infinity) // number
 console.log(typeof -Infinity) // number
-console.log(typeof NaN) // number
-console.log(typeof "") // string
-console.log(typeof 1n) // bigint
-console.log(typeof true) // boolean
-console.log(typeof false) // boolean
-console.log(typeof Symbol("id")) // symbol
-console.log(typeof null) // object (официально признанная ошибка в typeof)
+console.log(typeof {}) // object (что бы в объекте не находилось - результат будет object)
+console.log(typeof []) // object (что бы в массиве не находилось - результат будет object)
 console.log(typeof Math) // object
 console.log(typeof function () {
-}) // function
+}) // function (что бы в функции не находилось - результат будет object)
+console.log(typeof f) // function (что бы в функции не находилось - результат будет object)
+console.log(typeof f2) // function (что бы в функции не находилось - результат будет object)
 
 // 2. delete (удаляет свойство в объекте)
 const obj = {a: 1}
