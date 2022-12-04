@@ -57,7 +57,6 @@ console.log(String([arrowFunction])) // ()=>{}
 // Number(value) - преобразует в число
 // Можно преобразовать с помощью унарного оператора +
 // Пробелы в строках удаляются и остается то что остается
-// Любое
 console.log(Number("")) // 0
 console.log(Number("  ")) // 0
 console.log(Number("  a  ")) // NaN

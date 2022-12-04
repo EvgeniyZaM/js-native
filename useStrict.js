@@ -18,3 +18,19 @@ const f2 = function () {
   console.log(this) // undefined (не в строгом объект window)
 }
 f2()
+
+// Объявление Function Declaration видимо только внутри блока кода, в котором располагается
+if (2 > 1) {
+  function showA() {
+    console.log("a")
+  }
+
+  showA() // a (выполнится)
+} else {
+  function showB() {
+    console.log("b")
+  }
+
+  showB() // n (выполнится)
+}
+// showA() // Error (не в строгом бы сработало, с expression и arrow не сработает ни в каком режиме)

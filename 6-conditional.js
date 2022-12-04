@@ -44,15 +44,15 @@ number === 0
 
 // 4 вариант:
 switch (number) {
-  case 0:
+  case 0: // number === 0
     console.log("Вы ввели число 0")
     break
 
-  case 1:
+  case 1: // number === 1
     console.log("Вы ввели число 1")
     break
 
-  case 2:
+  case 2: // number === 0 || number === 3
   case 3:
     console.log("Вы ввели число 2, а может и 3")
     break
@@ -65,15 +65,15 @@ switch (number) {
 // 5 вариант:
 const f2 = () => {
   switch (number) {
-    case 0:
+    case 0: // number === 0
       console.log("Вы ввели число 0")
       return
 
-    case 1:
+    case 1: // number === 1
       console.log("Вы ввели число 1")
       return
 
-    case 2:
+    case 2: // number === 2 || number === 3
     case 3:
       console.log("Вы ввели число 2, а может и 3")
       return
