@@ -44,7 +44,7 @@ let person = {
     },
   ],
   showInfo(value) {
-    console.log(`${this.name} ${value}`)
+    console.log(`Меня зовут ${this.name} и я ${value}`)
   },
   sayBob: function () {
     console.log("Bob!")
@@ -66,31 +66,39 @@ let person = {
 // console.log(person.address)
 // console.log(person.address.city)
 // console.log(person.address.street)
-// console.log(person[friends])
+// console.log(person["my friends"])
 // console.log(person["my friends"][0])
 // console.log(person["my friends"][0].id)
 // console.log(person["my friends"][0].name)
+// console.log(person["my friends"][0].favoriteDish)
 // console.log(person["my friends"][0].favoriteDish.title)
+// console.log(person["my friends"][0].favoriteDish.ingredients)
+// console.log(person["my friends"][0].favoriteDish.ingredients[0])
 // console.log(person["my friends"][0].favoriteDish.ingredients[0].id)
 // console.log(person["my friends"][0].favoriteDish.ingredients[0].title)
 // console.log(person["my friends"][0].favoriteDish.ingredients[0].amount)
+// console.log(person["my friends"][0].favoriteDish.ingredients[1])
 // console.log(person["my friends"][0].favoriteDish.ingredients[1].id)
 // console.log(person["my friends"][0].favoriteDish.ingredients[1].title)
 // console.log(person["my friends"][0].favoriteDish.ingredients[1].amount)
+// console.log(person["my friends"][0].favoriteDish.ingredients[2])
 // console.log(person["my friends"][0].favoriteDish.ingredients[2].id)
 // console.log(person["my friends"][0].favoriteDish.ingredients[2].title)
 // console.log(person["my friends"][0].favoriteDish.ingredients[2].amount)
 // console.log(person[friends][1])
 // console.log(person[friends][1].id)
 // console.log(person[friends][1].name)
+// console.log(person[friends][1].favoriteDish)
 // console.log(person[friends][1].favoriteDish.title)
+// console.log(person[friends][1].favoriteDish.ingredients[0])
 // console.log(person[friends][1].favoriteDish.ingredients[0].id)
 // console.log(person[friends][1].favoriteDish.ingredients[0].title)
 // console.log(person[friends][1].favoriteDish.ingredients[0].amount)
+// console.log(person[friends][1].favoriteDish.ingredients[1])
 // console.log(person[friends][1].favoriteDish.ingredients[1].id)
 // console.log(person[friends][1].favoriteDish.ingredients[1].title)
 // console.log(person[friends][1].favoriteDish.ingredients[1].amount)
-// person.showInfo("человек")
+// person.showInfo("Front-end developer")
 // person.sayBob()
 
 // Добавление свойств (изменение работает аналогичным образом):
@@ -135,32 +143,24 @@ delete person["my friends"][2].age
 delete person["my friends"][2]
 delete person.sayHi
 
+// Итерация по объекту:
+// for (let key in person) {
+// console.log(key) // Ключи
+// console.log(person[key]) // Значения
+// }
+
 // Проверка существования свойств:
+// Простая проверка на undefined:
 // console.log(person.name === undefined) // false
 // console.log(person.age === undefined) // true
+// Оператор in:
 // console.log("name" in person) // true
 // console.log("age" in person) // false
 // let key = "name"
 // console.log(key in person) // true (если мы опускаем кавычки, это значит, что мы указываем переменную, в которой находится имя свойства)
-
-// Перебор свойств объекта:
-// for (let key in person) {
-// // Если свойств нету - цикл не начнет выполнятся
-//   console.log(key) // Ключи
-//   console.log(person[key]) // Значения ключей
-// }
-
-// Проверка на пустоту. Если свойств нету, вернуть true, а иначе false
-// let schedule = {}
-// const isEmpty = (schedule) => {
-//   for (let key in schedule) {
-//     // если тело цикла начнет выполняться - значит в объекте есть свойства
-//     return false
-//   }
-//
-//   return true
-// }
-// console.log(isEmpty(schedule)) // true
+// Object.hasOwn:
+// console.log(Object.hasOwn(person, "name")) // true
+// console.log(Object.hasOwn(person, "name1")) // false
 
 // 1. Цикл for in (поверхностная копия)
 // let newPerson = {}
@@ -168,6 +168,7 @@ delete person.sayHi
 //   newPerson[key] = person[key]
 // }
 
+// Копирование объекта:
 // 2. Object.assign() (поверхностная копия)
 // const newPerson = {}
 // Object.assign(newPerson, person, {newValue: 1}, {newValue2: 2})
@@ -189,3 +190,4 @@ delete person.sayHi
 //     }
 //   })
 // }
+

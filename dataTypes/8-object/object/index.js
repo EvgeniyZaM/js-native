@@ -51,3 +51,10 @@ delete obj.isOnline // нельзя
 // console.log(Object.is(NaN, NaN)) // true (при использовании === будет false)
 // console.log(Object.is(0, -0)) // false (при использовании === будет true)
 // Во всех других случаях Object.is идентичен ===
+
+// Object.hasOwn (проверяет, есть ли указанное свойство у объекта)
+const obj5 = {
+  name: "Grisha"
+}
+// console.log(Object.hasOwn(obj5, "name")) // true
+// console.log(Object.hasOwn(obj5, "name1")) // false

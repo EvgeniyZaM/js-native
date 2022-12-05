@@ -98,6 +98,10 @@ console.log("a".localeCompare("a")) // 0
 console.log("z".localeCompare("a")) // 1
 console.log("a".localeCompare("z")) // -1
 
+// split (преобразует строку в массив)
+console.log("hello".split("")) // [ 'h', 'e', 'l', 'l', 'o' ]
+console.log("!h!e!l!l!o!".split("!")) // ['',  'h', 'e', 'l', 'l', 'o', '' ] (можно использовать для удаления всех найденных подстрок)
+
 // replaceAll (удаляет, либо заменяет все найденные подстроки и возвращает итоговый результат)
 console.log("!h!e!l!l!o!".replaceAll("!", "")) // hello (удаление)
 console.log("!h!e!l!l!o!".replaceAll("!", "?")) // ?h?e?l?l?o? (замена)
