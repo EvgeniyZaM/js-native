@@ -135,6 +135,9 @@ let users = [
 //   ]
 // }
 
+// Array.isArray(arg) - проверяет, является ли переданный аргумент массивом и возвращает boolean значение
+// console.log(Array.isArray(users)) // true
+
 // Так делать можно, но не нужно!
 // users.name = "Evgeniy" // Добавление нечислового свойства
 // users[999] = "Element" // Создание «дыр»
