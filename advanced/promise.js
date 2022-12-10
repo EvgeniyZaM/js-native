@@ -1,5 +1,5 @@
 const promise = new Promise((resolve, reject) => {
-  fetch('https://jsonplaceholder.typicode.com/users')
+  fetch("https://jsonplaceholder.typicode.com/users")
     // Promise chain
     .then((res) => res.json())
     .then((data) => data[0])
@@ -12,10 +12,10 @@ const promise = new Promise((resolve, reject) => {
 promise
   .then((lat) => console.log(lat))
   .catch((err) => console.warn(err))
-  .finally(() => console.log('Finally'))
+  .finally(() => console.log("Finally"))
 
 const promise2 = new Promise((resolve, reject) => {
-  fetch('https://jsonplaceholder.typicode.com/users')
+  fetch("https://jsonplaceholder.typicode.com/users")
     // Promise chain
     .then((res) => res.json())
     .then((data) => data[0])
@@ -28,19 +28,19 @@ const promise2 = new Promise((resolve, reject) => {
 promise2
   .then((lng) => console.log(lng))
   .catch((err) => console.warn(err))
-  .finally(() => console.log('Finally'))
+  .finally(() => console.log("Finally"))
 
 Promise.all([promise, promise2])
-  .then((results) => console.log('Promise all:', results))
+  .then((results) => console.log("Promise all:", results))
   .catch((err) => console.warn(err))
 
 
 Promise.allSettled([promise, promise2])
-  .then((results) => console.log('allSettled:', results))
+  .then((results) => console.log("allSettled:", results))
   .catch((err) => console.warn(err))
 
 Promise.race([promise, promise2])
-  .then((result) => console.log('Promise race:', result))
+  .then((result) => console.log("Promise race:", result))
   .catch((err) => console.warn(err))
 
 // // Promise у которого изначально состояние 'fulfilled'

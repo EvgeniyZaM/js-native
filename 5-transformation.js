@@ -19,10 +19,11 @@ console.log(String(Symbol("id"))) // "Symbol(id)"
 console.log(String(NaN)) // "NaN"
 console.log(String(Infinity)) // "Infinity"
 console.log(String(-Infinity)) // "-Infinity"
-console.log(String({})) // [object Object] (что бы в объекте не находилось - результат будет [object Object])
+console.log(String({})) // [object Object]
 console.log(String(functionDeclaration)) // "function functionDeclaration() {}"
 console.log(String(functionExpression)) // "function () {}"
 console.log(String(arrowFunction)) // "()=>{}"
+
 // С массивом результат особенный: (аналогичный результат будет с использованием toString())
 // Если в массиве будет хотя бы 1 объект, вернется undefined
 console.log(String([""])) // ""
