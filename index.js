@@ -1,110 +1,83 @@
 "use strict"
 
+// Замыкание - это способность функции работать с переменными из внешнего лексического окружения
+
+// Лексическое окружение - это специальный внутренний объект, с которым мы никак не можем взаимодействовать. С ним работает движок, добавляет новые переменные, удаляет и т.д.
+// Лексическое окружение состоит из ссылки на внешнее лексическое окружение и из объекта со свойствами, свойства это и есть наши объявленные переменные.
+// В начале скрипта лексическое окружение пустое, чтобы JS создал лексическое окружение, нужен вызов любой конструкции, которая создает область видимости.
+
 // Прежде чем скрипт начнет выполняться, движок пробегается по коду 2 раза
-
 // 1 пробег:
-// Создается лексическое окружение, в котором создается ссылка на внешнее лексическое окружение и пустая окружающая среда
-
-// Движок собирает все объявленные переменные с помощью ключевого слова var и Function Declaration, поднимает их и добавляет в лексическое окружение (hoisting)
+// Движок собирает все объявленные переменные с помощью ключевого слова var и Function Declaration, поднимает их и добавляет в объект лексического окружения (hoisting)
 // Function Declaration это будет ссылка на функцию, а в переменных объявленных с помощью ключевого слова var будет undefined.
 // Т.к. поднимается именно объявление переменной, а присвоение значения происходит там, где мы его явно присваиваем
 
 // 2 пробег:
 // Идет выполнение кода построчно
+// При каждом вызове функции создается новое лексическое окружение
+// Лексическое окружение существует до того момента, пока есть хотя бы одна вложенная функция, которая ссылается на него, а иначе удаляется сборщиком мусора
+// (удаляется, если вложенная функция не использует данные из внешнего лексического окружения)
 
-// Каждый раз, когда вызывается функция, у нее создается новое лексическое окружение
-// Сборщик мусора не удаляет лексическое окружение до тех пор, пока на него есть хоть одна ссылка
+// Перед выполнением кода Движок создает лексическое окружение и собирает все объявленные...
 
 const globalLexicalEnvironment = {
   outer: null,
   environmentRecord: {
     a: 1, // undefined => 1
-    functionDeclaration: "ref",
-    result: "ref", // undefined => "ref"
-    b: 2
-  },
+    a2: 2, // undefined => 2
+    functionDeclaration: "function",
+    anonymousFunction: "function",
+    result1: 1,
+    anonymousFunction2: "function",
+    result2: 1,
+  }
 }
 
+console.log(a) // undefined
 var a = 1
-let b = 2
 
-function functionDeclaration(arg) {
-  const functionDeclarationLexicalEnvironment = {
+a2 = 2
+console.log(a2) // 2
+var a2
+
+function functionDeclaration() {
+  const functionDeclarationLexicalEnvironment1 = { // Первый вызов functionDeclaration
     outer: globalLexicalEnvironment,
     environmentRecord: {
-      showArg: "ref",
-      arg: 10, // undefined => 10
-    },
+      count: 1, // 0 => 1
+      anonymousFunction: "function"
+    }
+  }
+  const functionDeclarationLexicalEnvironment2 = { // Второй вызов functionDeclaration
+    outer: globalLexicalEnvironment,
+    environmentRecord: {
+      count: 1, // 0 => 1
+      anonymousFunction: "function"
+    }
   }
 
-  function showArg() {
-    const showArgLexicalEnvironment = { // Удаляется, т.к. ссылка на функцию showArg нигде не хранится
-      outer: functionDeclarationLexicalEnvironment,
-      environmentRecord: {},
+  let count = 0
+
+  return () => {
+    const anonymousFunctionLexicalEnvironment1 = { // Первый вызов anonymousFunction
+      outer: functionDeclarationLexicalEnvironment1,
+      environmentRecord: {}
     }
-    const showArgLexicalEnvironment2 = { // Удаляется, т.к. ссылка на функцию showArg нигде не хранится
-      outer: functionDeclarationLexicalEnvironment,
-      environmentRecord: {},
+    const anonymousFunctionLexicalEnvironment2 = { // Второй вызов anonymousFunction
+      outer: functionDeclarationLexicalEnvironment2,
+      environmentRecord: {}
     }
 
-    console.log(arg)
+    return ++count
   }
-
-  return showArg
 }
 
-// В переменной result хранится ссылка на функцию functionDeclaration,
-// соответственно лексическое окружение functionDeclarationLexicalEnvironment не удаляется сборщиком мусора
-var result = functionDeclaration(10)
+const anonymousFunction = functionDeclaration()
+const result1 = anonymousFunction()
+console.log(result1) // 1
 
-result() // 10
-result() // 10
+const anonymousFunction2 = functionDeclaration()
+const result2 = anonymousFunction2()
+console.log(result2) // 1
 
-// result = null // Сборщик мусора удаляет ссылку на функцию и лексическое окружения functionDeclarationLexicalEnvironment
-
-
-// Объект лексическое окружение не создает
-// const globalLexicalEnvironment = {
-//   outer: null,
-//   environmentRecord: {
-//     object: "ref"
-//   },
-// }
-//
-// const object = {
-//   name: "Evgeny",
-//   sayName() {
-//     const sayNameLexicalEnvironment = {
-//       outer: globalLexicalEnvironment,
-//       environmentRecord: {},
-//     }
-//
-//     console.log(this.name)
-//   }
-// }
-//
-// object.sayName() // "Evgeny"
-
-// Пример замыкания:
-// const sum = (a) => {
-//   return (b) => {
-//     return a + b
-//   }
-// }
-// const result = sum(3)(6)
-// console.log(result)
-
-// const makeCounter = () => {
-//   let count = 0
-//
-//   return () => {
-//     console.log(++count)
-//   }
-// }
-// const counter = makeCounter()
-// counter() // 1
-// counter() // 2
-//
-// const counter2 = makeCounter()
-// counter2() // 1
-// counter() // 3
+// Сборка мусора - объект, который где-то используется - не может быть удален. Удаляется объект, для которого нет ссылки
