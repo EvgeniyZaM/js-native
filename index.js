@@ -1,91 +1,145 @@
 "use strict"
 
-// Замыкание - это способность функции работать с переменными из внешнего лексического окружения
+// Event loop (цикл событий) - это бесконечный цикл, который ожидает задачи, выполняет их и затем снова ожидает поступление новых задач
 
-// Лексическое окружение - это специальный внутренний объект, с которым мы никак не можем взаимодействовать. С ним работает движок, добавляет новые переменные, удаляет и т.д.
-// Лексическое окружение состоит из ссылки на внешнее лексическое окружение и из объекта со свойствами, свойства это и есть наши объявленные переменные.
-// Чтобы JS создал лексическое окружение, нужен вызов любой конструкции, которая создает область видимости.
+// call stack - сначала попадает синхронный код, выполняется поочередно и как только call stack будет пустым, event loop начнет разгребать микро-таски, а потом макро-таски
 
-// Перед выполнением скрипта создается лексическое окружение, в котором будет находиться ссылка на внешнее лексическое окружение и объект со свойствами.
-// После чего собираются все объявленные переменные с помощью ключевого слова var и Function Declaration и поднимаются верх, в глобальное лексическое окружение (hoisting)
-// Function Declaration это будет ссылка на эту функцию, а значение у переменных var будет undefined
-// Т.к. поднимается именно объявление переменной, а присвоение значения происходит там, где мы его явно присваиваем
+// Очередь макро-тасок (первый вошел, последний вышел) - в очередь макро-тасок попадают setTimeout, setInterval, обработчики события (синхронного кода быть не может)
+// Очередь микро-тасок - в очередь микро-тасок попадают коллбэки метода then, mutation observer, queueMicrotask (синхронного кода быть не может)
 
-// После чего скрипт начинает выполняться построчно
+// При использовании await, то только после того, как мы дождемся зарезолвленного промиса, выполнится код, который после await
+// При использовании await, когда мы не дождались когда промис зарезолвится, код который ниже не выполнится
 
-// Когда вызывается функция, перед ее выполнением создается лексическое окружение, в котором будет находиться ссылка на внешнее лексическое окружение и объект со свойствами.
-// В качестве свойств будут переданы аргументы со значением undefined, после чего идет поиск переменных объявленных с помощью var и Function Declaration
-// Function Declaration это будет ссылка на функцию, а в переменных объявленных с помощью ключевого слова var будет undefined.
-
-// После чего идет выполнение функции построчно
-// Когда функция отработала, ее лексическое окружение удаляется сборщиком мусора. Но если есть хотя бы одна вложенная функция, которая ссылается на него, то лексическое окружение будет жить
-// При каждом вызове функции, перед ее выполнением создается новое лексическое окружение
-
-const globalLexicalEnvironment = {
-  outer: null,
-  environmentRecord: {
-    a: 1, // undefined => 1
-    a2: 2, // undefined => 2
-    functionDeclaration: "function",
-    anonymousFunction: "function",
-    result1: 1,
-    anonymousFunction2: "function",
-    result2: 1,
-  }
-}
-
-console.log(a) // undefined
-var a = 1
-
-a2 = 2
-console.log(a2) // 2
-var a2
-
-function functionDeclaration() {
-  const functionDeclarationLexicalEnvironment1 = { // Первый вызов functionDeclaration
-    outer: globalLexicalEnvironment,
-    environmentRecord: {
-      count: 1, // 0 => 1
-      anonymousFunction: "function"
-    }
-  }
-  const functionDeclarationLexicalEnvironment2 = { // Второй вызов functionDeclaration
-    outer: globalLexicalEnvironment,
-    environmentRecord: {
-      count: 1, // 0 => 1
-      anonymousFunction: "function"
-    }
-  }
-
-  let count = 0
-
-  return () => {
-    const anonymousFunctionLexicalEnvironment1 = { // Первый вызов anonymousFunction
-      outer: functionDeclarationLexicalEnvironment1,
-      environmentRecord: {}
-    }
-    const anonymousFunctionLexicalEnvironment2 = { // Второй вызов anonymousFunction
-      outer: functionDeclarationLexicalEnvironment2,
-      environmentRecord: {}
-    }
-
-    return ++count
-  }
-}
-
-const anonymousFunction = functionDeclaration()
-const result1 = anonymousFunction()
-console.log(result1) // 1
-
-const anonymousFunction2 = functionDeclaration()
-const result2 = anonymousFunction2()
-console.log(result2) // 1
-
-// const x = 1
+// Пример 1:
+// setTimeout(function () {
+//   console.log(1)
+// }, 4000)
 //
-// function f() {
-//   console.log(x) // Error
-//   const x = 2
+// setTimeout(function () {
+//   console.log(2)
+// }, 1000)
+//
+// setTimeout(function () {
+//   console.log(3)
+// }, 1)
+//
+// new Promise(function (resolve) {
+//   console.log(4)
+//   resolve()
+//   console.log(5)
+// })
+//   .then(function () {
+//     console.log(5)
+//   })
+//
+// console.log(6)
+//
+// // 4, 5, 6, 5, 3, 2, 1
+
+// Пример 2:
+// setTimeout(function () {
+//   console.log(1)
+// }, 1)
+//
+// setTimeout(() => {
+//   console.log(2)
+// }, 1000)
+//
+// new Promise(function (resolve, reject) {
+//   console.log(3)
+//   resolve()
+//   console.log(4)
+// })
+//   .then(function () {
+//     console.log(5)
+//   })
+//
+// console.log(6)
+//
+// async function f() {
+//   console.log(7)
+//   await f2()
+//   console.log(8)
+//   console.log(9)
+// }
+//
+// function f2() {
+//   console.log(10)
 // }
 //
 // f()
+//
+// console.log(11)
+// 3, 4, 6, 7, 10, 11, 5, 8, 9, 1, 2
+
+// Пример 3:
+// console.log(1)
+//
+// setTimeout(() => {
+//   console.log(2)
+//   Promise.resolve()
+//     .then(() => {
+//       console.log(3)
+//     })
+// }, 1000)
+//
+// new Promise((resolve) => {
+//   console.log(4)
+//   resolve(5)
+// })
+//   .then((data) => {
+//     console.log(data)
+//
+//     Promise.resolve()
+//       .then(() => {
+//         console.log(6)
+//       })
+//       .then(() => {
+//         console.log(7)
+//
+//         setTimeout(() => {
+//           console.log(8)
+//         }, 2000)
+//       })
+//   })
+//
+// setTimeout(() => {
+//   console.log(9)
+// }, 2000)
+//
+// console.log(10)
+// // 1, 4, 10, 5, 6, 7, 2, 3, 9, 8
+
+// Пример 4:
+// console.log(1)
+//
+// setTimeout(function () {
+//   console.log(2)
+// }, 2)
+//
+// let p = new Promise(function (resolve, reject) {
+//   console.log(3)
+//   resolve()
+// })
+//
+// p.then(function () {
+//   console.log(4)
+// })
+//
+// console.log(5)
+// 1, 3, 5, 4, 2
+
+// Пример 5:
+// console.log(1)
+// setTimeout(() => console.log(2), 1000)
+// Promise.resolve().then(() => console.log(3))
+// Promise.resolve()
+//   .then(() => setTimeout(() => console.log(4), 4000))
+//   .then(() => console.log(5))
+// Promise.resolve().then(() => console.log(6))
+// Promise.resolve().then(() => console.log(7))
+//
+// setTimeout(() => console.log(8), 2000)
+//
+// console.log(9)
+// 1, 9, 3, 6, 7, 5, 2, 8, 4
