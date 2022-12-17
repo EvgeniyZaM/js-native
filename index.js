@@ -1,107 +1,71 @@
 "use strict"
 
-// Event loop (цикл событий) - это бесконечный цикл, который ожидает задачи, выполняет их и затем снова ожидает поступление новых задач
+// При использовании await, то только после того, как мы дождемся зарезолвленного promise-а, выполнится код, который после await.
+// При использовании await, когда мы не дождались когда promise зарезолвится, код который ниже не выполнится
 
-// Дело в том, что JS это синхронный, однопоточный язык программирования, т.е. в текущий момент времени, может выполнятся только одна задача и если эта задача ресурсоемкая, мы не сможем приступить к следующей, пока не выполнится текущая. Решить эту проблему помогает Event Loop
 
-// Начинается выполнение кода построчно:
-// Если попадается синхронный код, он попадает в call stack, выполняется и уходит из call stack-а.
-// Если попадается setTimeout, setInterval, обработчик события, то переданный callback попадает в call stack, после чего уходит из call stack-а и попадает в web api
-// С web api коллбэки попадают в очередь макро-тасок и как только call stack будет пустой, в него начнут попадать коллбэки из web api
-// Если попадается метод промиса, то переданный callback попадает в очередь микро-тасок и как только call stack будет пустой, в него начнут попадать коллбэки из микро-тасок
-// Сперва выполняются микро-таски, после чего макро-таски
+const promise = new Promise((resolve, reject) => {
+  // resolve("Data")
+  reject("Error")
+})
 
-// Очередь макро-тасок - в очередь макро-тасок попадают setTimeout, setInterval, обработчики события (синхронного кода быть не может)
-// Очередь микро-тасок - в очередь микро-тасок попадают коллбэки методов промиса, mutation observer, queueMicrotask (синхронного кода быть не может)
+// Цепочка promise-ов
+promise
+  // .catch((error)=>{
+  //   console.log(error) // "Error"
+  // })
+  .then((data) => {
+    console.log(data) // "Data"
+    return data.slice(1)
+  })
+  // .catch(() => {  // Для обработки ошибки двух верхних методов, catch и then
+  //   console.log("Error 1")
+  // })
+  .then((data) => {
+    console.log(data) // "ata"
+    return data.slice(1)
+  })
+  // .catch(() => {  // Для обработки ошибки двух верхних методов, catch и then
+  //   console.log("Error 2")
+  // })
+  .then((data) => {
+    console.log(data) // "ta"
+  })
 
-// При использовании await, то только после того, как мы дождемся зарезолвленного промиса, выполнится код, который после await
-// При использовании await, когда мы не дождались когда промис зарезолвится, код который ниже не выполнится
+  // Срабатывает при вызове функции reject или когда в каком-то из методов then, в первом callback-е произошла ошибка
+  .catch(() => {
+    console.log("Error")
+    return "new error"
+  })
+  // .then(null, () => { // Альтернатива метода catch, которую лучше не использовать
+  //   console.log("Error")
+  //   return "new error"
+  // })
 
-// Пример 2:
-// setTimeout(function () {
-//   console.log(1)
-// }, 1)
-//
-// setTimeout(() => {
-//   console.log(2)
-// }, 1000)
-//
-// new Promise(function (resolve, reject) {
-//   console.log(3)
-//   resolve()
-//   console.log(4)
-// })
-//   .then(function () {
-//     console.log(5)
+  // Первый callback метода then может принимать в качестве аргумента возвращенное значение в callback-е метода catch (catch не может)
+  // Или возвращенное значение во втором callback-е метода then
+  .then((data) => {
+    console.log(data) // "new error"
+  })
+
+// promise
+//   .then( // Первый then
+//     (data) => {
+//       console.log(data) // "Data"
+//       return "new data"
+//     },
+//     (error) => { // Вызывается если вызовем функцию reject в конструкторе promise
+//       console.log(error) // "Error"
+//     }
+//   )
+//   .then( // Второй then
+//     (data) => { // Возвращенное значение в первом then
+//       console.log(data) // "new data"
+//     },
+//     () => {  // Вызывается если ошибка будет в первом callback-е первого then
+//       console.log("Ошибка в первом callback-е первого then")
+//     }
+//   )
+//   .then(null, () => { // Вызывается если ошибка будет в первом callback-е второго then
+//     console.log("Ошибка во втором callback-е первого then")
 //   })
-//
-// console.log(6)
-//
-// async function f() {
-//   console.log(7)
-//   await f2()
-//   console.log(8)
-//   console.log(9)
-// }
-//
-// function f2() {
-//   console.log(10)
-// }
-//
-// f()
-//
-// console.log(11)
-
-// Пример 3:
-// setTimeout(() => {
-//   console.log(2)
-//   Promise.resolve()
-//     .then(() => {
-//       console.log(3)
-//     })
-// }, 1000)
-//
-// new Promise((resolve) => {
-//   resolve()
-// })
-//   .then(() => {
-//     console.log(5)
-//
-//     Promise.resolve()
-//       .then(() => {
-//         console.log(6)
-//       })
-//       .then(() => {
-//         console.log(7)
-//
-//         setTimeout(() => {
-//           console.log(8)
-//         }, 2000)
-//       })
-//   })
-//
-// setTimeout(() => {
-//   console.log(9)
-// }, 2000)
-
-// Пример 5:
-// setTimeout(() => console.log(2), 1000)
-// Promise.resolve().then(() => console.log(3))
-// Promise.resolve()
-//   .then(() => setTimeout(() => console.log(4), 4000))
-//   .then(() => console.log(5))
-// Promise.resolve().then(() => console.log(6))
-// Promise.resolve().then(() => console.log(7))
-//
-// setTimeout(() => console.log(8), 2000)
-
-
-// setTimeout(() => console.log(2), 1000)
-// Promise.resolve().then(() => setTimeout(() => console.log(3), 500))
-// Promise.resolve()
-//   .then(() => setTimeout(() => console.log(4), 4000))
-//   .then(() => setTimeout(() => console.log(5), 1500))
-// Promise.resolve().then(() => setTimeout(() => console.log(6), 5000))
-// Promise.resolve().then(() => setTimeout(() => console.log(7), 200))
-//
-// setTimeout(() => console.log(8), 2000)
