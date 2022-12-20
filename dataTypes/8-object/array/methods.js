@@ -44,7 +44,7 @@ const array = [1, 2, 3, 4, 5]
 // const newArray = array.concat([6, 7], 8, 9)
 // console.log(newArray) // [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
 
-// const newArray = array.slice(0, 2)
+// const newArray = array.slice.js(0, 2)
 // console.log(newArray) // [ 1, 2 ]
 
 // const str = array.join(", ")

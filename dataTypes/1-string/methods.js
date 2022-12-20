@@ -46,7 +46,7 @@ console.log("hello".endsWith("lo")) // true
 console.log("hello".endsWith("ll")) // false
 console.log("hello".endsWith("o", 5)) // true
 
-// slice (возвращает часть строки от стартового индекса, до конечного, не включая конечный)
+// slice.js (возвращает часть строки от стартового индекса, до конечного, не включая конечный)
 console.log("hello".slice(1)) // ello
 console.log("hello".slice(0, -1)) // hell
 console.log("hello".slice(1, -1)) // ell
