@@ -75,3 +75,24 @@
 // setTimeout(() => console.log(7), 1000)
 // myPromise(5000).then(res => console.log(8))
 // // 3, 1, 2, 6, 7, 4, 5, 8
+
+// Задача 6
+// new Promise(() => {
+//   console.log(1)
+// })
+// new Promise(() => {
+//   setTimeout(() => console.log(2), 0)
+// })
+// Promise.resolve(setTimeout(() => console.log(3), 0))
+// console.log(4)
+// Promise.reject(console.log(5))
+// // 1, 4, 5, 2, 3
+
+// Задача 7
+// setTimeout(() => console.log(1), 100)
+// let i = 0
+// while (i < 5e9) {
+//   i++
+// }
+// setTimeout(() => console.log(3), 50)
+// // 1, 3
